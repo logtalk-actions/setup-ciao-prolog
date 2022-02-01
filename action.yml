@@ -1,0 +1,13 @@
+name: Setup Ciao Prolog
+description: Installs the specified Ciao Prolog version
+inputs:
+  ciao-prolog-version:
+    description: Ciao Prolog version to install
+    required: true
+    default: latest
+runs:
+  using: 'node12'
+  main: 'src/setup-ciao-prolog.js'
+branding:
+  icon: 'box'
+  color: 'blue'

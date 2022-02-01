@@ -1,0 +1,24 @@
+name: Test
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: ${{ matrix.operating-system }}
+    strategy:
+      matrix:
+        operating-system: [macOS-latest, ubuntu-latest]
+    steps:
+      - name: Install Ciao Prolog
+        uses: logtalk-actions/setup-ciao-prolog@master
+        with:
+          ciao-prolog-version: latest
+      - name: Run trivial sanity test
+        run: ciaosh -e true -e halt
+      - name: Install Logtalk
+        uses: logtalk-actions/setup-logtalk@master
+        with:
+          logtalk-version: latest
+          logtalk-tool-dependencies: false
+      - name: Run Logtalk aliases example tests
+        run: cd "$LOGTALKUSER/examples/aliases" && sudo logtalk_tester -p ciao

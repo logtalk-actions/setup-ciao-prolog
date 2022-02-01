@@ -1,0 +1,17 @@
+#!/bin/bash
+
+set -eo pipefail
+
+version=$1
+
+if [ "$version" == "latest" ] ; then
+	git clone https://github.com/ciao-lang/ciao
+	cd ciao
+	git checkout master
+else
+	git clone https://github.com/ciao-lang/ciao
+	cd ciao
+	git fetch --all --tags
+	git checkout "$version"
+fi
+sudo ./ciao-boot.sh global-install
