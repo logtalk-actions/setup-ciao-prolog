@@ -4,6 +4,7 @@ set -eo pipefail
 
 version=$1
 
+brew install coreutils
 if [ "$version" == "latest" ] ; then
 	git clone https://github.com/ciao-lang/ciao
 	cd ciao
